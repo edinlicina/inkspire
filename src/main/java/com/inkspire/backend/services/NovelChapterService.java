@@ -5,6 +5,8 @@ import com.inkspire.backend.entities.NovelChapterEntity;
 import com.inkspire.backend.repositories.NovelChapterRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NovelChapterService {
     private final NovelChapterRepository novelChapterRepository;
@@ -19,5 +21,9 @@ public class NovelChapterService {
         novelChapterEntity.setContent("Once upon a time");
         novelChapterEntity.setTitle("Drunken Swordmaster");
         novelChapterRepository.save(novelChapterEntity);
+    }
+    public List<NovelChapterEntity> getChapters(){
+        List<NovelChapterEntity> novelChapters = novelChapterRepository.findAll();
+        return novelChapters;
     }
 }
