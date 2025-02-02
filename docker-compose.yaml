@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: inkspire123
+      POSTGRES_USER: admin
+      POSTGRES_DB: inkspire
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
