@@ -3,8 +3,11 @@ package com.inkspire.backend.controllers;
 import com.inkspire.backend.dtos.CreateNovelChapterDto;
 import com.inkspire.backend.dtos.UpdateNovelChapterDto;
 import com.inkspire.backend.entities.NovelChapterEntity;
+import com.inkspire.backend.exceptions.EntityNotFoundException;
 import com.inkspire.backend.services.NovelChapterService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,11 +31,20 @@ public class NovelChapterController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteNovelChapter(@PathVariable int id){
+    public void deleteNovelChapter(@PathVariable int id) {
         novelChapterService.deleteNovelChapter(id);
     }
+
     @PutMapping("/{id}")
-    public void updateNovelChapter(@PathVariable int id , @RequestBody UpdateNovelChapterDto updateNovelChapterDto){
-        novelChapterService.updateNovelChapter(id, updateNovelChapterDto);
+    public void updateNovelChapter(@PathVariable int id, @RequestBody UpdateNovelChapterDto updateNovelChapterDto) {
+        try {
+            novelChapterService.updateNovelChapter(id, updateNovelChapterDto);
+
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Novel Chapter not found"
+            );
+        }
+
     }
 }

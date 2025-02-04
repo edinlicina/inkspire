@@ -4,6 +4,7 @@ package com.inkspire.backend.services;
 import com.inkspire.backend.dtos.CreateNovelChapterDto;
 import com.inkspire.backend.dtos.UpdateNovelChapterDto;
 import com.inkspire.backend.entities.NovelChapterEntity;
+import com.inkspire.backend.exceptions.EntityNotFoundException;
 import com.inkspire.backend.repositories.NovelChapterRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,19 +26,25 @@ public class NovelChapterService {
         novelChapterEntity.setTitle(createNovelChapterDto.getTitle());
         novelChapterRepository.save(novelChapterEntity);
     }
-    public List<NovelChapterEntity> getChapters(){
+
+    public List<NovelChapterEntity> getChapters() {
         List<NovelChapterEntity> novelChapters = novelChapterRepository.findAll();
         return novelChapters;
     }
-    public void deleteNovelChapter(int id){
-      novelChapterRepository.deleteById(id);
+
+    public void deleteNovelChapter(int id) {
+        novelChapterRepository.deleteById(id);
     }
-    public void updateNovelChapter(int id, UpdateNovelChapterDto updateNovelChapterDto){
-    Optional<NovelChapterEntity> optionalNovelChapterEntity = novelChapterRepository.findById(id);
-    NovelChapterEntity novelChapterEntity = optionalNovelChapterEntity.get();
-    novelChapterEntity.setTitle(updateNovelChapterDto.getTitle());
-    novelChapterEntity.setChapterCount(updateNovelChapterDto.getChapterCount());
-    novelChapterEntity.setContent(updateNovelChapterDto.getContent());
-    novelChapterRepository.save(novelChapterEntity);
+
+    public void updateNovelChapter(int id, UpdateNovelChapterDto updateNovelChapterDto) {
+        Optional<NovelChapterEntity> optionalNovelChapterEntity = novelChapterRepository.findById(id);
+        if (optionalNovelChapterEntity.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        NovelChapterEntity novelChapterEntity = optionalNovelChapterEntity.get();
+        novelChapterEntity.setTitle(updateNovelChapterDto.getTitle());
+        novelChapterEntity.setChapterCount(updateNovelChapterDto.getChapterCount());
+        novelChapterEntity.setContent(updateNovelChapterDto.getContent());
+        novelChapterRepository.save(novelChapterEntity);
     }
 }
