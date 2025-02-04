@@ -1,6 +1,7 @@
 package com.inkspire.backend.controllers;
 
 import com.inkspire.backend.dtos.CreateNovelChapterDto;
+import com.inkspire.backend.dtos.UpdateNovelChapterDto;
 import com.inkspire.backend.entities.NovelChapterEntity;
 import com.inkspire.backend.services.NovelChapterService;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,9 @@ public class NovelChapterController {
     @DeleteMapping("/{id}")
     public void deleteNovelChapter(@PathVariable int id){
         novelChapterService.deleteNovelChapter(id);
+    }
+    @PutMapping("/{id}")
+    public void updateNovelChapter(@PathVariable int id , @RequestBody UpdateNovelChapterDto updateNovelChapterDto){
+        novelChapterService.updateNovelChapter(id, updateNovelChapterDto);
     }
 }
