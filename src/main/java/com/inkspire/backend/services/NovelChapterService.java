@@ -2,9 +2,11 @@ package com.inkspire.backend.services;
 
 
 import com.inkspire.backend.dtos.CreateNovelChapterDto;
+import com.inkspire.backend.dtos.NovelChapterDto;
 import com.inkspire.backend.dtos.UpdateNovelChapterDto;
 import com.inkspire.backend.entities.NovelChapterEntity;
 import com.inkspire.backend.exceptions.EntityNotFoundException;
+import com.inkspire.backend.mappers.NovelChapterMappers;
 import com.inkspire.backend.repositories.NovelChapterRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +29,8 @@ public class NovelChapterService {
         novelChapterRepository.save(novelChapterEntity);
     }
 
-    public List<NovelChapterEntity> getChapters() {
-        List<NovelChapterEntity> novelChapters = novelChapterRepository.findAll();
-        return novelChapters;
+    public List<NovelChapterDto> getChapters() {
+        return novelChapterRepository.findAll().stream().map(NovelChapterMappers::toDto).toList();
     }
 
     public void deleteNovelChapter(int id) {

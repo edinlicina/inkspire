@@ -1,8 +1,8 @@
 package com.inkspire.backend.controllers;
 
 import com.inkspire.backend.dtos.CreateNovelChapterDto;
+import com.inkspire.backend.dtos.NovelChapterDto;
 import com.inkspire.backend.dtos.UpdateNovelChapterDto;
-import com.inkspire.backend.entities.NovelChapterEntity;
 import com.inkspire.backend.exceptions.EntityNotFoundException;
 import com.inkspire.backend.services.NovelChapterService;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class NovelChapterController {
     }
 
     @GetMapping
-    public List<NovelChapterEntity> getNovelChapters() {
+    public List<NovelChapterDto> getNovelChapters() {
         return novelChapterService.getChapters();
     }
 
