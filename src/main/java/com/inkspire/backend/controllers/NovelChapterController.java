@@ -1,11 +1,9 @@
 package com.inkspire.backend.controllers;
 
+import com.inkspire.backend.dtos.CreateNovelChapterDto;
 import com.inkspire.backend.entities.NovelChapterEntity;
 import com.inkspire.backend.services.NovelChapterService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +17,17 @@ public class NovelChapterController {
     }
 
     @PostMapping
-    public void createNovelChapter() {
-        novelChapterService.createChapter();
+    public void createNovelChapter(@RequestBody CreateNovelChapterDto createNovelChapterDto) {
+        novelChapterService.createChapter(createNovelChapterDto);
     }
 
     @GetMapping
     public List<NovelChapterEntity> getNovelChapters() {
         return novelChapterService.getChapters();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteNovelChapter(@PathVariable int id){
+        novelChapterService.deleteNovelChapter(id);
     }
 }
