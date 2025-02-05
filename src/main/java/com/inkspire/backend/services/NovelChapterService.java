@@ -22,12 +22,17 @@ public class NovelChapterService {
     }
 
     public NovelChapterDto createChapter(CreateNovelChapterDto createNovelChapterDto) {
+        NovelChapterEntity createdNovelChapter = createNovelChapterEntity(createNovelChapterDto);
+        return NovelChapterMappers.toDto(createdNovelChapter);
+    }
+
+    public NovelChapterEntity createNovelChapterEntity(CreateNovelChapterDto createNovelChapterDto) {
         NovelChapterEntity novelChapterEntity = new NovelChapterEntity();
         novelChapterEntity.setChapterCount(createNovelChapterDto.getChapterCount());
         novelChapterEntity.setContent(createNovelChapterDto.getContent());
         novelChapterEntity.setTitle(createNovelChapterDto.getTitle());
-        NovelChapterEntity createdNovelChapter = novelChapterRepository.save(novelChapterEntity);
-        return NovelChapterMappers.toDto(createdNovelChapter);
+        return novelChapterRepository.save(novelChapterEntity);
+
     }
 
     public List<NovelChapterDto> getChapters() {

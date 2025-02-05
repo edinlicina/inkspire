@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name= "novel")
 @Data
@@ -19,5 +21,11 @@ public class NovelEntity {
     private String title;
     @Column
     private String description;
+    @OneToMany(mappedBy = "novel")
+    private List<NovelChapterEntity> novelChapters;
 
+    public void addNovelChapter(NovelChapterEntity novelChapterEntity) {
+        novelChapters.add(novelChapterEntity);
+        novelChapterEntity.setNovel(this);
+    }
 }

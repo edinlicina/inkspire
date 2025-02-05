@@ -10,6 +10,7 @@ public class NovelChapterMappers {
         novelChapterDto.setId(novelChapterEntity.getId());
         novelChapterDto.setContent(novelChapterEntity.getContent());
         novelChapterDto.setTitle(novelChapterEntity.getTitle());
+
         return novelChapterDto;
     }
 }

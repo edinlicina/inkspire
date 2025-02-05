@@ -1,5 +1,6 @@
 package com.inkspire.backend.controllers;
 
+import com.inkspire.backend.dtos.CreateNovelChapterDto;
 import com.inkspire.backend.dtos.CreateNovelDto;
 import com.inkspire.backend.dtos.NovelDto;
 import com.inkspire.backend.dtos.UpdateNovelDto;
@@ -23,6 +24,17 @@ public class NovelController {
     @PostMapping
     public NovelDto createNovel(@RequestBody CreateNovelDto createNovelDto) {
         return novelService.createNovel(createNovelDto);
+    }
+
+    @PostMapping("/{novelId}/novel-chapter")
+    public NovelDto createNovelChapter(@PathVariable int novelId, @RequestBody CreateNovelChapterDto createNovelChapterDto) {
+        try {
+            return novelService.createNovelChapter(novelId, createNovelChapterDto);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Novel not found"
+            );
+        }
     }
 
     @GetMapping

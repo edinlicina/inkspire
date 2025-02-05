@@ -1,11 +1,14 @@
 package com.inkspire.backend.services;
 
+import com.inkspire.backend.dtos.CreateNovelChapterDto;
 import com.inkspire.backend.dtos.CreateNovelDto;
 import com.inkspire.backend.dtos.NovelDto;
 import com.inkspire.backend.dtos.UpdateNovelDto;
+import com.inkspire.backend.entities.NovelChapterEntity;
 import com.inkspire.backend.entities.NovelEntity;
 import com.inkspire.backend.exceptions.EntityNotFoundException;
 import com.inkspire.backend.mappers.NovelMappers;
+import com.inkspire.backend.repositories.NovelChapterRepository;
 import com.inkspire.backend.repositories.NovelRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +18,14 @@ import java.util.Optional;
 @Service
 public class NovelService {
     private final NovelRepository novelRepository;
+    private final NovelChapterRepository novelChapterRepository;
+    private final NovelChapterService novelChapterService;
 
-    public NovelService(NovelRepository novelRepository) {
+
+    public NovelService(NovelRepository novelRepository, NovelChapterRepository novelChapterRepository, NovelChapterService novelChapterService) {
         this.novelRepository = novelRepository;
+        this.novelChapterRepository = novelChapterRepository;
+        this.novelChapterService = novelChapterService;
     }
 
     public NovelDto createNovel(CreateNovelDto createNovelDto) {
@@ -46,5 +54,18 @@ public class NovelService {
         novelEntity.setDescription(updateNovelDto.getDescription());
         NovelEntity updatedNovel = novelRepository.save(novelEntity);
         return NovelMappers.toDto(updatedNovel);
+    }
+
+    public NovelDto createNovelChapter(int novelId, CreateNovelChapterDto createNovelChapterDto) {
+
+        Optional<NovelEntity> optionalNovelEntity = novelRepository.findById(novelId);
+        if (optionalNovelEntity.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        NovelChapterEntity novelChapterEntity = novelChapterService.createNovelChapterEntity(createNovelChapterDto);
+        NovelEntity novelEntity = optionalNovelEntity.get();
+        novelEntity.addNovelChapter(novelChapterEntity);
+        NovelEntity novelChapterDto = novelRepository.save(novelEntity);
+        return NovelMappers.toDto(novelChapterDto);
     }
 }

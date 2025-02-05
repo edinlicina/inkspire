@@ -1,7 +1,9 @@
 package com.inkspire.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "novel_chapter")
@@ -19,4 +21,7 @@ public class NovelChapterEntity {
     private String chapterCount;
     @Column
     private String content;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "novel_id")
+    private NovelEntity novel;
 }
