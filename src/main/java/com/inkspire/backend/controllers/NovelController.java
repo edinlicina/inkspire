@@ -24,4 +24,9 @@ public class NovelController {
     public List<NovelDto> getNovels(){
         return novelService.getNovels();
     }
+    @DeleteMapping("/{id}")
+    public void deleteNovel(@PathVariable int id){
+        novelService.deleteNovel(id);
+    }
+
 }

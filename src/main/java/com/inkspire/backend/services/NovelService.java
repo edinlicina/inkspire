@@ -27,4 +27,7 @@ public class NovelService {
     public List<NovelDto> getNovels(){
         return novelRepository.findAll().stream().map(NovelMappers::toDto).toList();
     }
+    public void deleteNovel(int id){
+        novelRepository.deleteById(id);
+    }
 }
