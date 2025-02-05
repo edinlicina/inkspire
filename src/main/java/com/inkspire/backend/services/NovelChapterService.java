@@ -26,8 +26,8 @@ public class NovelChapterService {
         novelChapterEntity.setChapterCount(createNovelChapterDto.getChapterCount());
         novelChapterEntity.setContent(createNovelChapterDto.getContent());
         novelChapterEntity.setTitle(createNovelChapterDto.getTitle());
-        NovelChapterEntity created = novelChapterRepository.save(novelChapterEntity);
-        return NovelChapterMappers.toDto(created);
+        NovelChapterEntity createdNovelChapter = novelChapterRepository.save(novelChapterEntity);
+        return NovelChapterMappers.toDto(createdNovelChapter);
     }
 
     public List<NovelChapterDto> getChapters() {
@@ -50,4 +50,5 @@ public class NovelChapterService {
         NovelChapterEntity updated = novelChapterRepository.save(novelChapterEntity);
         return NovelChapterMappers.toDto(updated);
     }
+
 }
