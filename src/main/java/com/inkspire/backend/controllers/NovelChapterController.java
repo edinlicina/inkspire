@@ -37,9 +37,9 @@ public class NovelChapterController {
     }
 
     @PutMapping("/{id}")
-    public void updateNovelChapter(@PathVariable int id, @RequestBody UpdateNovelChapterDto updateNovelChapterDto) {
+    public NovelChapterDto updateNovelChapter(@PathVariable int id, @RequestBody UpdateNovelChapterDto updateNovelChapterDto) {
         try {
-            novelChapterService.updateNovelChapter(id, updateNovelChapterDto);
+            return novelChapterService.updateNovelChapter(id, updateNovelChapterDto);
 
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(

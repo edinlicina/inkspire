@@ -38,7 +38,7 @@ public class NovelChapterService {
         novelChapterRepository.deleteById(id);
     }
 
-    public void updateNovelChapter(int id, UpdateNovelChapterDto updateNovelChapterDto) {
+    public NovelChapterDto updateNovelChapter(int id, UpdateNovelChapterDto updateNovelChapterDto) {
         Optional<NovelChapterEntity> optionalNovelChapterEntity = novelChapterRepository.findById(id);
         if (optionalNovelChapterEntity.isEmpty()) {
             throw new EntityNotFoundException();
@@ -47,6 +47,7 @@ public class NovelChapterService {
         novelChapterEntity.setTitle(updateNovelChapterDto.getTitle());
         novelChapterEntity.setChapterCount(updateNovelChapterDto.getChapterCount());
         novelChapterEntity.setContent(updateNovelChapterDto.getContent());
-        novelChapterRepository.save(novelChapterEntity);
+        NovelChapterEntity updated = novelChapterRepository.save(novelChapterEntity);
+        return NovelChapterMappers.toDto(updated);
     }
 }
