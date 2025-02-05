@@ -7,6 +7,8 @@ import com.inkspire.backend.mappers.NovelMappers;
 import com.inkspire.backend.repositories.NovelRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NovelService {
     private final NovelRepository novelRepository;
@@ -21,5 +23,8 @@ public class NovelService {
         novelEntity.setTitle(createNovelDto.getTitle());
         NovelEntity createdNovel = novelRepository.save(novelEntity);
         return NovelMappers.toDto(createdNovel);
+    }
+    public List<NovelDto> getNovels(){
+        return novelRepository.findAll().stream().map(NovelMappers::toDto).toList();
     }
 }
