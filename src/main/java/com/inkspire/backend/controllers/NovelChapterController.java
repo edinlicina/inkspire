@@ -21,8 +21,9 @@ public class NovelChapterController {
     }
 
     @PostMapping
-    public void createNovelChapter(@RequestBody CreateNovelChapterDto createNovelChapterDto) {
-        novelChapterService.createChapter(createNovelChapterDto);
+    public NovelChapterDto createNovelChapter(@RequestBody CreateNovelChapterDto createNovelChapterDto) {
+        return novelChapterService.createChapter(createNovelChapterDto);
+
     }
 
     @GetMapping

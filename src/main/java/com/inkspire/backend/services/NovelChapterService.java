@@ -21,12 +21,13 @@ public class NovelChapterService {
         this.novelChapterRepository = novelChapterRepository;
     }
 
-    public void createChapter(CreateNovelChapterDto createNovelChapterDto) {
+    public NovelChapterDto createChapter(CreateNovelChapterDto createNovelChapterDto) {
         NovelChapterEntity novelChapterEntity = new NovelChapterEntity();
         novelChapterEntity.setChapterCount(createNovelChapterDto.getChapterCount());
         novelChapterEntity.setContent(createNovelChapterDto.getContent());
         novelChapterEntity.setTitle(createNovelChapterDto.getTitle());
-        novelChapterRepository.save(novelChapterEntity);
+        NovelChapterEntity created = novelChapterRepository.save(novelChapterEntity);
+        return NovelChapterMappers.toDto(created);
     }
 
     public List<NovelChapterDto> getChapters() {
