@@ -29,3 +29,21 @@ It exposes a REST API to manage **novels** and their **chapters**, backed by a P
 - **ORM:** Spring Data JPA (Hibernate)
 - **Docs:** Swagger / OpenAPI (springdoc + springfox)
 - **Others:** Lombok, JUnit
+
+## How to run if docker has not been started
+
+- **Command:** docker compose down
+- **Command:** docker compose up -d
+
+Then run the BackendApplication
+
+## How to run if docker has been started
+
+Run the BackendApplication
+
+## How to reach the Spring Boot UI for testing purposes
+
+After running the project successfully enter the following URL into your browser
+
+- **URl:** http://localhost:8080/swagger-ui/index.html
+
