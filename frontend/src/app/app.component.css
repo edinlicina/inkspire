@@ -1,0 +1,11 @@
+.navbar{
+    background-color: aquamarine;
+    padding: 8px;
+    
+}
+
+.items{
+    display: flex;
+    list-style-type: none;
+    gap: 16px;
+}
