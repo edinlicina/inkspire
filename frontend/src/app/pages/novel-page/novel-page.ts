@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
@@ -13,6 +13,7 @@ import { NovelsService } from '../../services/novels-service';
 export class NovelPageComponent {
   novelsService = inject(NovelsService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
   novel = this.route.params
     .pipe(
       map((params) => {
@@ -23,5 +24,13 @@ export class NovelPageComponent {
         return this.novelsService.getNovelById(novelId);
       })
     )
+
+    deleteNovel(novelId: number){
+      console.log("Hi");
+      this.novelsService.deleteNovel(novelId).subscribe(() => {
+        this.router.navigateByUrl("/");
+      });
+      
+    }
      
 }

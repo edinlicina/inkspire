@@ -1,7 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { NovelPageComponent } from "../novel-page/novel-page";
 import { RouterLink } from "@angular/router";
-import { NovelDto } from "../../models/novel-dto";
 import { NovelsService } from "../../services/novels-service";
 import { AsyncPipe } from "@angular/common";
 
@@ -15,3 +13,4 @@ export class NovelListPageComponent{
     novelsService = inject(NovelsService); 
     novels = this.novelsService.getNovels();
 }
+

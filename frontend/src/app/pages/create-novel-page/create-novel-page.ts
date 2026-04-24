@@ -1,6 +1,7 @@
 import { Component, inject, Inject, signal } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
 import { NovelsService } from '../../services/novels-service';
+import { Router } from '@angular/router';
 
 type CreateNovelForm = {
   title: string;
@@ -15,6 +16,7 @@ type CreateNovelForm = {
 })
 export class CreateNovelPageComponent {
   novelsService = inject(NovelsService);
+  router = inject(Router);
   formData = signal<CreateNovelForm>({
     title: '',
     description: '',
@@ -29,7 +31,9 @@ export class CreateNovelPageComponent {
         title: formData.title,
         description: formData.description,
       })
-      .subscribe();
+      .subscribe((novel) => {
+        this.router.navigateByUrl("novel/" + novel.id);
+      });
     this.form().value.set({
       title: '',
       description: '',

@@ -18,4 +18,8 @@ export class NovelsService {
   createNovel(dto: CreateNovelDto){
     return this.httpClient.post<NovelDto>("http://localhost:8080/api/novel", dto)
   }
+
+  deleteNovel(novelId: number) {
+    return this.httpClient.delete<NovelDto>("http://localhost:8080/api/novel/" + novelId);
+  }
 }
