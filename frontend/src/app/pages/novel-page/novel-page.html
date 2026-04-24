@@ -1,3 +1,9 @@
-<p>{{(novel|async)?.title}}</p>
-<p>{{(novel|async)?.description}}</p>
+@let _novel=novel|async;
 
+<!--  -->
+@if(_novel === undefined || _novel === null){
+<p>Novel not found</p>
+}@else {
+<p>{{_novel.title}}</p>
+<p>{{_novel.description}}</p>
+}

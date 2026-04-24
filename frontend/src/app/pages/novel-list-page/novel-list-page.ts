@@ -13,5 +13,5 @@ import { AsyncPipe } from "@angular/common";
 })
 export class NovelListPageComponent{
     novelsService = inject(NovelsService); 
-    novels = this.novelsService.novels;
+    novels = this.novelsService.getNovels();
 }

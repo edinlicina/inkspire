@@ -40,6 +40,16 @@ public class NovelService {
         return novelRepository.findAll().stream().map(NovelMappers::toDto).toList();
     }
 
+    public NovelDto getNovelById(int id){
+
+        Optional<NovelEntity> optionalNovelEntity = novelRepository.findById(id);
+        if(optionalNovelEntity.isEmpty()){
+            throw new EntityNotFoundException();
+        }
+        NovelEntity novelEntity = optionalNovelEntity.get();
+        return NovelMappers.toDto(novelEntity);
+    }
+
     public void deleteNovel(int id) {
         novelRepository.deleteById(id);
     }

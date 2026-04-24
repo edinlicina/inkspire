@@ -42,6 +42,9 @@ public class NovelController {
         return novelService.getNovels();
     }
 
+    @GetMapping("/{id}")
+    public NovelDto getNovelById(@PathVariable int id){return novelService.getNovelById(id);}
+
     @DeleteMapping("/{id}")
     public void deleteNovel(@PathVariable int id) {
         novelService.deleteNovel(id);

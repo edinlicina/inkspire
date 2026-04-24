@@ -1,32 +1,16 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { NovelDto } from '../models/novel-dto';
-import { BehaviorSubject, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class NovelsService {
-  novels = new BehaviorSubject<NovelDto[]>([
-    {
-      id: 0,
-      title: 'The first ashes',
-      description: 'A burning night',
-    },
-    {
-      id: 1,
-      title: 'Digging for survival',
-      description: 'A young miners survival story',
-    },
-  ]);
+  httpClient = inject(HttpClient);
 
   getNovelById(novelId: number) {
-    return this.novels.pipe(
-      map((novels) => {
-        return novels.find((novel) => {
-          if (novel.id === novelId) {
-            return true;
-          }
-          return false;
-        });
-      }),
-    );
+    return this.httpClient.get<NovelDto>("http://localhost:8080/api/novel/" + novelId);
+  }
+
+  getNovels(){
+    return this.httpClient.get<NovelDto[]>("http://localhost:8080/api/novel");
   }
 }
