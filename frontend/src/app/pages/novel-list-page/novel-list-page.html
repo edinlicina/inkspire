@@ -1,0 +1,8 @@
+<div class="novel-list">
+  @for (novel of novels|async; track novel.id) {
+  <article class="novel">
+    <h2><a routerLink="novel/{{novel.id}}">{{novel.title}}</a></h2>
+    <p>{{novel.description}}</p>
+  </article>
+  }
+</div>

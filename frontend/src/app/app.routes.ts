@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: NovelListPageComponent,
   },
   {
-    path: 'novel',
+    path: 'novel/:novelId',
     component: NovelPageComponent,
   },
 ];

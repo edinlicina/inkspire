@@ -1,4 +1,5 @@
-/src/main/application.properties
+/src/main/resources/application.properties
+.DS_Store
 
 HELP.md
 .gradle
@@ -37,5 +38,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-/postgres/

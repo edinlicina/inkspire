@@ -1,0 +1,11 @@
+.novel{
+    padding: 8px;
+    border: 1px solid darkgray;
+}
+.novel-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    
+}
