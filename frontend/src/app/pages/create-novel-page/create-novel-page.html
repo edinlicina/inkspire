@@ -1,7 +1,13 @@
 <form class="form">
     <label for="title">Title</label>
     <input id="title" [formField]="form.title"/>
+    @if (form.title().touched() && form.title().invalid()){
+        <p>Title is required.</p>
+    }
      <label for="description">Description</label>
     <input class="descInputField" id="description" [formField]="form.description"/>
+    @if (form.description().touched() && form.description().invalid()){
+        <p>Description is required.</p>
+    }
     <button type="button" class="button" (click)="createNovel()">create novel</button>
 </form>

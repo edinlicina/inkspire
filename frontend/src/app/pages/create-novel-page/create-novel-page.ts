@@ -1,12 +1,12 @@
 import { Component, inject, Inject, signal } from '@angular/core';
-import { form, FormField } from '@angular/forms/signals';
+import { form, FormField, required, schema } from '@angular/forms/signals';
 import { NovelsService } from '../../services/novels-service';
 import { Router } from '@angular/router';
 
 type CreateNovelForm = {
   title: string;
   description: string;
-};
+};  
 
 @Component({
   selector: 'app-create-novel-page',
@@ -21,11 +21,20 @@ export class CreateNovelPageComponent {
     title: '',
     description: '',
   });
-  form = form(this.formData);
+  form = form(this.formData, (path) => {
+    required(path.title, {message: 'Title is required.'});
+    required(path.description, {message: 'A description is required.'});
+  });
+
+
+  
 
   createNovel() {
     const formData = this.form().value();
     console.log(formData);
+    if(this.form().invalid()){
+      return;
+    }
     this.novelsService
       .createNovel({
         title: formData.title,
