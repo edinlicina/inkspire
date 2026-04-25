@@ -4,7 +4,9 @@
 @if(_novel === undefined || _novel === null){
 <p>Novel not found</p>
 }@else {
-<p>{{_novel.title}}</p>
+<div class="titleDescDiv">
+<p class="title">{{_novel.title}}</p>
 <p>{{_novel.description}}</p>
-<button (click)="deleteNovel(_novel.id)">Delete Button</button>
+</div>
+<button type="button" class="button" (click)="deleteNovel(_novel.id)">Delete Button</button>
 }
