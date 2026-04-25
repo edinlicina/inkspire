@@ -1,5 +1,5 @@
 .navbar{
-    background-color: aquamarine;
+    background-color: #111827;
     padding: 8px;
     
 }
@@ -8,4 +8,9 @@
     display: flex;
     list-style-type: none;
     gap: 16px;
+    
+}
+
+.link{
+    color: #ffffff;
 }
