@@ -6,6 +6,10 @@
   gap: 6px;
 }
 
+.descInputField{
+  padding: 24px;
+}
+
 .button {
   background-color: #111827;
   border: 1px solid transparent;
