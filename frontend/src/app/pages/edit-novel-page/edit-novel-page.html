@@ -17,5 +17,5 @@
       <p class="errorMessage">{{ error.message }}</p>
     }
   }
-  <app-button type="submit">Save changes</app-button>
+  <app-button (buttonClicked)="saveChanges()">Save changes</app-button>
 </form>

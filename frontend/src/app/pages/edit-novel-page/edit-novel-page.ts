@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { ButtonComponent } from '../../shared-components/button/button';
 import { form, FormField, minLength, required } from '@angular/forms/signals';
 import { NovelsService } from '../../services/novels-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 
 type EditNovelForm = {
+  id: number;
   title: string;
   description: string;
 };
@@ -19,7 +20,9 @@ type EditNovelForm = {
 export class EditNovelPageComponent {
   novelsService = inject(NovelsService);
   route = inject(ActivatedRoute);
+  router = inject(Router);
   formData = signal<EditNovelForm>({
+    id: -1,
     title: '',
     description: '',
   });
@@ -35,6 +38,7 @@ export class EditNovelPageComponent {
       }),
     )
     .subscribe((novel) => {
+      this.form.id().value.set(novel.id);
       this.form.title().value.set(novel.title);
       this.form.description().value.set(novel.description);
     });
@@ -49,7 +53,22 @@ export class EditNovelPageComponent {
 
   wasFormSubmitted = signal(false);
 
-  anders(novelId: number) {
-    this.novelsService.getNovelById(novelId);
+  saveChanges() {
+    this.wasFormSubmitted.set(true);
+    if (this.form().invalid()) {
+      return;
+    }
+    const novelId = this.form.id().value();
+    const updatedNovelTitle = this.form.title().value();
+    const updatedNovelDescription = this.form.description().value();
+
+    this.novelsService
+      .updateNovel(novelId, {
+        title: updatedNovelTitle,
+        description: updatedNovelDescription,
+      })
+      .subscribe((novel) => {
+        this.router.navigateByUrl('novel/' + novel.id);
+      });
   }
 }

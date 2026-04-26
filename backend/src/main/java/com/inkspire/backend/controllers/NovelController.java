@@ -52,7 +52,7 @@ public class NovelController {
     }
 
     @PutMapping("/{id}")
-    public NovelDto updateNovel(@PathVariable int id, @RequestBody UpdateNovelDto updateNovelDto) {
+    public NovelDto updateNovel(@PathVariable int id, @Valid @RequestBody UpdateNovelDto updateNovelDto) {
         try {
             return novelService.updateNovel(id, updateNovelDto);
 
