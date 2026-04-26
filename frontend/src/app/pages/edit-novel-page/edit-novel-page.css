@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin-inline: auto;
+  gap: 6px;
+}
+
+.descInputField {
+  padding: 24px;
+}
+
+.errorMessage {
+  color: red;
+}

@@ -1,1 +1,21 @@
-Hello world
+<form class="form" novalidate>
+  <label for="title">Title</label>
+  <input id="title" [formField]="form.title" />
+  @if (wasFormSubmitted() && form.title().invalid()) {
+    @for (error of form.title().errors(); track error) {
+      <p class="errorMessage">{{ error.message }}</p>
+    }
+  }
+  <label for="description">Description</label>
+  <input
+    class="descInputField"
+    id="description"
+    [formField]="form.description"
+  />
+  @if (wasFormSubmitted() && form.description().invalid()) {
+    @for (error of form.description().errors(); track error) {
+      <p class="errorMessage">{{ error.message }}</p>
+    }
+  }
+  <app-button type="submit">Save changes</app-button>
+</form>
