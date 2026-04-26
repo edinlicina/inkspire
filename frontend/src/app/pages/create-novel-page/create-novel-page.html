@@ -1,13 +1,19 @@
-<form class="form">
-    <label for="title">Title</label>
-    <input id="title" [formField]="form.title"/>
-    @if (form.title().touched() && form.title().invalid()){
-        <p>Title is required.</p>
+<form class="form" novalidate (submit)="createNovel($event)">
+  <label for="title">Title</label>
+  <input id="title" [formField]="form.title" />
+  @if (wasFormSubmitted() && form.title().invalid()) {
+    @for (error of form.title().errors(); track error) {
+      <p>{{ error.message }}</p>
     }
-     <label for="description">Description</label>
-    <input class="descInputField" id="description" [formField]="form.description"/>
-    @if (form.description().touched() && form.description().invalid()){
-        <p>Description is required.</p>
-    }
-    <button type="button" class="button" (click)="createNovel()">create novel</button>
+  }
+  <label for="description">Description</label>
+  <input
+    class="descInputField"
+    id="description"
+    [formField]="form.description"
+  />
+  @if (wasFormSubmitted() && form.description().invalid()) {
+    <p>Description is required.</p>
+  }
+  <button type="submit" class="button">create novel</button>
 </form>
