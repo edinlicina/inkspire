@@ -6,6 +6,7 @@ import com.inkspire.backend.dtos.NovelDto;
 import com.inkspire.backend.dtos.UpdateNovelDto;
 import com.inkspire.backend.exceptions.EntityNotFoundException;
 import com.inkspire.backend.services.NovelService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,7 +23,7 @@ public class NovelController {
     }
 
     @PostMapping
-    public NovelDto createNovel(@RequestBody CreateNovelDto createNovelDto) {
+    public NovelDto createNovel(@Valid @RequestBody CreateNovelDto createNovelDto) {
         return novelService.createNovel(createNovelDto);
     }
 

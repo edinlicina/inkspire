@@ -30,6 +30,7 @@ public class NovelService {
 
     public NovelDto createNovel(CreateNovelDto createNovelDto) {
         NovelEntity novelEntity = new NovelEntity();
+
         novelEntity.setDescription(createNovelDto.getDescription());
         novelEntity.setTitle(createNovelDto.getTitle());
         NovelEntity createdNovel = novelRepository.save(novelEntity);
