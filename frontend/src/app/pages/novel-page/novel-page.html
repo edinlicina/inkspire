@@ -1,12 +1,13 @@
-@let _novel=novel|async;
+@let _novel = novel | async;
 
-<!--  -->
-@if(_novel === undefined || _novel === null){
-<p>Novel not found</p>
-}@else {
-<div class="titleDescDiv">
-<p class="title">{{_novel.title}}</p>
-<p>{{_novel.description}}</p>
-</div>
-<button type="button" class="button" (click)="deleteNovel(_novel.id)">Delete Button</button>
+@if (_novel === undefined || _novel === null) {
+  <p>Novel not found</p>
+} @else {
+  <div class="titleDescDiv">
+    <p class="title">{{ _novel.title }}</p>
+    <p>{{ _novel.description }}</p>
+  </div>
+  <app-button type="submit" (buttonClicked)="deleteNovel(_novel.id)">
+    Delete Novel
+  </app-button>
 }

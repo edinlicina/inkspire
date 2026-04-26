@@ -1,0 +1,20 @@
+.button {
+  background-color: #111827;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 0.75rem 1.2rem;
+  user-select: none;
+  transition: filter 150ms ease-in-out;
+
+}
+.button:hover{
+    filter:brightness(1.5);
+}
+
+

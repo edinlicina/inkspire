@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { form, FormField, minLength, required } from '@angular/forms/signals';
 import { NovelsService } from '../../services/novels-service';
 import { Router } from '@angular/router';
+import { ButtonComponent } from "../../shared-components/button/button";
 
 type CreateNovelForm = {
   title: string;
@@ -12,7 +13,7 @@ type CreateNovelForm = {
   selector: 'app-create-novel-page',
   templateUrl: './create-novel-page.html',
   styleUrl: './create-novel-page.css',
-  imports: [FormField],
+  imports: [FormField, ButtonComponent],
 })
 export class CreateNovelPageComponent {
   novelsService = inject(NovelsService);

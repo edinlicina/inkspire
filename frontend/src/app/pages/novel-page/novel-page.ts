@@ -3,12 +3,13 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { NovelsService } from '../../services/novels-service';
+import { ButtonComponent } from "../../shared-components/button/button";
 
 @Component({
   selector: 'app-novel-page',
   templateUrl: './novel-page.html',
   styleUrl: './novel-page.css',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, ButtonComponent],
 })
 export class NovelPageComponent {
   novelsService = inject(NovelsService);
