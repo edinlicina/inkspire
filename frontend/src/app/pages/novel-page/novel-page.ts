@@ -31,5 +31,7 @@ export class NovelPageComponent {
     });
   }
 
-  editNovel() {}
+  editNovel(novelId: number) {
+    this.router.navigateByUrl('novel/' + novelId + '/edit');
+  }
 }
