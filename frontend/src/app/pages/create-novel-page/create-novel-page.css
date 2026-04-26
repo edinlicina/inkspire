@@ -49,3 +49,7 @@
   touch-action: manipulation;
   width: auto;
 }
+
+.errorMessage{
+  color: red;
+}
