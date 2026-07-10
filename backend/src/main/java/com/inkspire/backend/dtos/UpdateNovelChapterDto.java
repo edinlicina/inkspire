@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 public class UpdateNovelChapterDto {
     private String title;
     private String content;
-    private String chapterCount;
+    private Integer chapterNumber;
 
 }

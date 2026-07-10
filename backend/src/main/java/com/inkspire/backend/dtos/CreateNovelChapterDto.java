@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 public class CreateNovelChapterDto {
     private String title;
     private String content;
-    private String chapterCount;
+    private Integer chapterNumber;
+
 
 }

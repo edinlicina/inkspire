@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,8 +22,8 @@ public class NovelEntity {
     private String title;
     @Column
     private String description;
-    @OneToMany(mappedBy = "novel", cascade = CascadeType.REMOVE)
-    private List<NovelChapterEntity> novelChapters;
+    @OneToMany(mappedBy = "novel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NovelChapterEntity> novelChapters = new ArrayList<>();
 
     public void addNovelChapter(NovelChapterEntity novelChapterEntity) {
         novelChapters.add(novelChapterEntity);

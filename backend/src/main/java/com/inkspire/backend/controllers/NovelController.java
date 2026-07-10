@@ -26,17 +26,6 @@ public class NovelController {
         return novelService.createNovel(createNovelDto);
     }
 
-    @PostMapping("/{novelId}/novel-chapter")
-    public NovelDto createNovelChapter(@PathVariable int novelId, @RequestBody CreateNovelChapterDto createNovelChapterDto) {
-        try {
-            return novelService.createNovelChapter(novelId, createNovelChapterDto);
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Novel not found"
-            );
-        }
-    }
-
     @GetMapping
     public List<NovelDto> getNovels() {
         return novelService.getNovels();

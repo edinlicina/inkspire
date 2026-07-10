@@ -1,0 +1,17 @@
+@if (chapter | async; as chapter) {
+  <div class="chapter-container">
+    <button class="back-button" (click)="back()">← Back to Novel</button>
+
+    <p class="chapter-number">Chapter {{ chapter.chapterNumber }}</p>
+
+    <h1>
+      {{ chapter.title }}
+    </h1>
+
+    <hr />
+
+    <div class="chapter-content">
+      {{ chapter.content }}
+    </div>
+  </div>
+}

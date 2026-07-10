@@ -24,4 +24,7 @@ public class NovelChapterEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "novel_id")
     private NovelEntity novel;
+
+    public void setChapterCount(String chapterCount) {
+    }
 }

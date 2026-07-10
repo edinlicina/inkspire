@@ -34,4 +34,8 @@ export class NovelPageComponent {
   editNovel(novelId: number) {
     this.router.navigateByUrl('novel/' + novelId + '/edit');
   }
+
+  addChapter(novelId: number) {
+    this.router.navigate(['/novel', novelId, 'chapters', 'new']);
+  }
 }

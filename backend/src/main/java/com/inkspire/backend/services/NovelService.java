@@ -67,16 +67,5 @@ public class NovelService {
         return NovelMappers.toDto(updatedNovel);
     }
 
-    public NovelDto createNovelChapter(int novelId, CreateNovelChapterDto createNovelChapterDto) {
 
-        Optional<NovelEntity> optionalNovelEntity = novelRepository.findById(novelId);
-        if (optionalNovelEntity.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
-        NovelChapterEntity novelChapterEntity = novelChapterService.createNovelChapterEntity(createNovelChapterDto);
-        NovelEntity novelEntity = optionalNovelEntity.get();
-        novelEntity.addNovelChapter(novelChapterEntity);
-        NovelEntity novelChapterDto = novelRepository.save(novelEntity);
-        return NovelMappers.toDto(novelChapterDto);
-    }
 }
