@@ -9,6 +9,6 @@ public class NovelChapterDto {
 
     private Integer id;
     private String title;
-    private String chapterCount;
+    private Integer chapterNumber;
     private String content;
 }
