@@ -4,6 +4,7 @@ import { NovelPageComponent } from './pages/novel-page/novel-page';
 import { CreateNovelPageComponent } from './pages/create-novel-page/create-novel-page';
 import { EditNovelPageComponent } from './pages/edit-novel-page/edit-novel-page';
 import { CreateNovelChapterPageComponent } from './pages/create-novel-chapter-page/create-novel-chapter-page';
+import { NovelChapterPageComponent } from './pages/novel-chapter-page/novel-chapter-page';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,10 @@ export const routes: Routes = [
   {
     path: 'novel/:novelId/chapters/new',
     component: CreateNovelChapterPageComponent,
+  },
+  {
+    path: 'novel/:novelId/chapter/:chapterId',
+
+    component: NovelChapterPageComponent,
   },
 ];

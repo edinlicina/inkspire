@@ -38,4 +38,8 @@ export class NovelPageComponent {
   addChapter(novelId: number) {
     this.router.navigate(['/novel', novelId, 'chapters', 'new']);
   }
+
+  openChapter(novelId: number, chapterId: number) {
+    this.router.navigate(['/novel', novelId, 'chapter', chapterId]);
+  }
 }

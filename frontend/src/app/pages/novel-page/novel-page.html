@@ -6,14 +6,35 @@
   <div class="titleDescDiv">
     <p class="title">{{ _novel.title }}</p>
     <p>{{ _novel.description }}</p>
+
+    <h2>Chapters</h2>
+
+    @if (_novel.chapters.length === 0) {
+      <p>No chapters yet.</p>
+    } @else {
+      <div class="chapterList">
+        @for (chapter of _novel.chapters; track chapter.id) {
+          <button
+            type="button"
+            class="chapterItem"
+            (click)="openChapter(_novel.id, chapter.id)"
+          >
+            Chapter {{ chapter.chapterNumber }} - {{ chapter.title }}
+          </button>
+        }
+      </div>
+    }
   </div>
+
   <div class="actions">
     <app-button type="submit" (buttonClicked)="deleteNovel(_novel.id)">
       Delete Novel
     </app-button>
+
     <app-button type="submit" (buttonClicked)="editNovel(_novel.id)">
       Edit Novel
     </app-button>
+
     <app-button type="submit" (buttonClicked)="addChapter(_novel.id)">
       Add Chapter
     </app-button>
