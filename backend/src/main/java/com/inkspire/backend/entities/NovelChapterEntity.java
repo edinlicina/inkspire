@@ -18,7 +18,7 @@ public class NovelChapterEntity {
     @Column
     private String title;
     @Column
-    private String chapterCount;
+    private Integer chapterNumber;
     @Column
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
